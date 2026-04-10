@@ -8,6 +8,7 @@ A premium, automated solution for solving Moodle quizzes using Google Gemini 2.0
 
 - **🤖 AI-Powered Solving:** Uses Gemini 2.0 Flash (Function Calling) for 10/10 accuracy scores.
 - **🕒 Backend Scheduler:** Set and forget. Quizzes are solved automatically the moment they open.
+- **🗂️ Edge Config Queue:** All quiz schedules are stored in one Edge Config key (`quiz_schedules`) and completed entries are removed automatically.
 - **📊 Real-time Grouped Logs:** Detailed question-by-question lifecycle logs showing AI reasoning and Choice IDs.
 - **📜 Solve History:** Persistent local storage for 7 days with detailed result review and manual deletion.
 - **🔐 Secure Access:** JWT-protected dashboard with `.env` based credentials.
@@ -43,6 +44,17 @@ MOODLE_TOKEN="your_moodle_token"
 # Google Gemini
 GEMINI_API_KEY="your_api_key_here"
 
+# Vercel Edge Config (required for serverless quiz scheduling)
+# Read connection string for @vercel/edge-config SDK
+EDGE_CONFIG="your_edge_config_connection_string"
+
+# Write access for updating quiz schedules/statuses
+VERCEL_API_TOKEN="your_vercel_api_token"
+EDGE_CONFIG_ID="ecfg_8ckdt3rpqnwg2bdwhq6lqqn4ulpf"
+
+# Optional (recommended) secret for /api/cron/auto-solve
+CRON_SECRET="your_cron_secret"
+
 # Auth Settings
 ADMIN_USERNAME="admin"
 ADMIN_PASSWORD="your_secure_password"
@@ -62,6 +74,11 @@ Visit `http://localhost:3000` and sign in.
 1. **Connect Repository:** Link your private GitHub/GitLab repo to Vercel.
 2. **Environment Variables:** In Vercel Project Settings, add all `.env` variables listed above.
 3. **Deploy:** Click deploy.
+
+4. **Cron Job (cron-job.org):**
+   - URL: `https://your-domain.com/api/cron/auto-solve?secret=YOUR_CRON_SECRET`
+   - Method: `GET`
+   - Interval: every 1 minute
 
 > **💡 Note for Experts:**
 > Vercel has serverless function timeouts. For background scheduled tasks, this project is optimized for shorter gaps. For full-day background timers, consider a long-running Node server (DigitalOcean/Railway).

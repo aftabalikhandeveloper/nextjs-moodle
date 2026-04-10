@@ -6,7 +6,7 @@ export async function middleware(request) {
   const path = request.nextUrl.pathname;
 
   // 1. Allow public assets and login page
-  if (path === "/login" || path.startsWith("/api/auth")) {
+  if (path === "/login" || path.startsWith("/api/auth") || path.startsWith("/api/cron")) {
     return NextResponse.next();
   }
 

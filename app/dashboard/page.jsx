@@ -2,6 +2,7 @@
 import { useQuizzes } from "@/hooks/useQuizzes";
 import StatsBar from "@/components/StatsBar";
 import QuizList from "@/components/QuizList";
+import ScheduledQuizStatusPanel from "@/components/ScheduledQuizStatusPanel";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -138,6 +139,7 @@ export default function DashboardPage() {
 
         {!loading ? (
           <>
+            <ScheduledQuizStatusPanel />
             <StatsBar quizzes={quizzes || []} />
             <QuizList quizzes={quizzes || []} />
           </>
