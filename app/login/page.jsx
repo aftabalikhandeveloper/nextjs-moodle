@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -9,6 +9,20 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/user-info");
+        if (res.ok) {
+          router.replace("/dashboard");
+        }
+      } catch {
+      }
+    };
+
+    checkAuth();
+  }, [router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +41,7 @@ export default function LoginPage() {
       } else {
         setError(data.message || "Invalid login");
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong");
     } finally {
       setLoading(false);

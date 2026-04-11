@@ -1,9 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/user-info");
+        setIsLoggedIn(res.ok);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden px-6 py-8 sm:px-10">
@@ -16,10 +31,10 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-3">
             <ThemeToggle />
             <Link
-              href="/login"
+              href={isLoggedIn ? "/dashboard" : "/login"}
               className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-[var(--accent-foreground)] transition hover:opacity-90"
             >
-              Login
+              {isLoggedIn ? "Dashboard" : "Login"}
             </Link>
           </div>
         </header>

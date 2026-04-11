@@ -25,13 +25,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0b1020;
+    --background: #09090b;
     --foreground: #f8fafc;
-    --card-background: #111936;
-    --secondary: #1a2650;
-    --border: #2f3f78;
-    --text-secondary: #c7d2fe;
-    --accent: #7dd3fc;
+    --card-background: #111113;
+    --secondary: #1a1a1e;
+    --border: #2b2b31;
+    --text-secondary: #a1a1aa;
+    --accent: #84cc16;
   }
 }
 
@@ -51,18 +51,18 @@
 }
 
 :root[data-theme="dark"] {
-  --background: #0b1020;
+  --background: #09090b;
   --foreground: #f8fafc;
-  --card-background: #111936;
-  --secondary: #1a2650;
-  --border: #2f3f78;
-  --text-secondary: #c7d2fe;
-  --accent: #7dd3fc;
-  --quiz-card-bg: #111936;
-  --quiz-card-border: #2f3f78;
-  --quiz-item-bg: #17224a;
-  --quiz-item-border: #30407a;
-  --quiz-schedule-bg: #1a2650;
+  --card-background: #111113;
+  --secondary: #1a1a1e;
+  --border: #2b2b31;
+  --text-secondary: #a1a1aa;
+  --accent: #84cc16;
+  --quiz-card-bg: #111113;
+  --quiz-card-border: #2b2b31;
+  --quiz-item-bg: #17171b;
+  --quiz-item-border: #2b2b31;
+  --quiz-schedule-bg: #151518;
 }
 
 :root[data-theme="light"] body {
@@ -70,7 +70,7 @@
 }
 
 :root[data-theme="dark"] body {
-  background-image: radial-gradient(circle at top right, rgba(125, 211, 252, 0.2), transparent 40%);
+  background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.04), transparent 40%);
 }
 
 body {

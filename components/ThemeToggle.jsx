@@ -5,15 +5,14 @@ import { useEffect } from "react";
 export default function ThemeToggle({ className = "", shortOnMobile = false, iconOnlyOnMobile = false }) {
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = storedTheme ?? (prefersDark ? "dark" : "light");
+    const initialTheme = storedTheme ?? "dark";
     document.documentElement.setAttribute("data-theme", initialTheme);
   }, []);
 
   const toggleTheme = () => {
     const currentTheme =
       document.documentElement.getAttribute("data-theme") ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      "dark";
     const nextTheme = currentTheme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("theme", nextTheme);
