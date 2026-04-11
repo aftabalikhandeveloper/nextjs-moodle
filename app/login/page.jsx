@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -34,8 +35,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6 text-foreground">
-      <div className="w-full max-w-md bg-card border border-border-custom rounded-3xl p-8 shadow-2xl animate-fade-in">
+    <div className="min-h-screen bg-background p-6 text-foreground">
+      <header className="mx-auto mb-10 flex w-full max-w-6xl items-center justify-between">
+        <p className="text-sm font-semibold tracking-[0.18em] text-text-muted">AI MOODLE QUIZ AUTOMATER</p>
+        <ThemeToggle />
+      </header>
+
+      <div className="mx-auto w-full max-w-md bg-card border border-border-custom rounded-3xl p-8 shadow-2xl animate-fade-in">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-black text-primary mb-2">Secure Login</h1>
           <p className="text-text-muted text-sm font-medium">Enter your AI platform credentials</p>

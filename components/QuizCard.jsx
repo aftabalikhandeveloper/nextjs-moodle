@@ -145,8 +145,8 @@ export default function QuizCard({ quiz: q }) {
   };
 
   return (
-    <div className="bg-card border border-border-custom rounded-2xl p-6 flex flex-col gap-4 transition-all hover:shadow-2xl hover:border-primary/30 group relative overflow-hidden animate-fade-in text-foreground">
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-500"></div>
+    <div className="quiz-card-shell bg-card border border-border-custom rounded-2xl p-6 flex flex-col gap-4 transition-all hover:shadow-2xl hover:border-primary/30 group relative overflow-hidden animate-fade-in text-foreground">
+      <div className="quiz-card-glow absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-500"></div>
 
       {solving && (
         <div className="absolute inset-0 bg-background/90 backdrop-blur-md z-20 flex flex-col items-center justify-center p-6 text-center animate-in fade-in zoom-in duration-300">
@@ -158,12 +158,12 @@ export default function QuizCard({ quiz: q }) {
         </div>
       )}
 
-      <div className="flex justify-between items-start">
-        <div className="flex-1 space-y-1">
-          <div className="flex items-center gap-2">
+      <div className="flex justify-between items-start gap-3">
+        <div className="flex-1 min-w-0 space-y-1">
+          <div className="flex flex-wrap items-center gap-2">
             <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md border ${
-              status === 'current' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 
-              status === 'upcoming' ? 'bg-blue-500/10 text-blue-500 border-blue-500/20' : 
+              status === 'current' ? 'bg-primary/15 text-primary border-primary/30' : 
+              status === 'upcoming' ? 'bg-amber-500/15 text-amber-700 border-amber-500/30 dark:text-amber-300' : 
               'bg-gray-500/10 text-gray-500 border-gray-500/20'
             }`}>
               {status}
@@ -174,39 +174,39 @@ export default function QuizCard({ quiz: q }) {
               </span>
             )}
           </div>
-          <h3 className="font-bold text-xl leading-snug group-hover:text-primary transition-colors pr-4">
+          <h3 className="font-bold text-xl leading-snug group-hover:text-primary transition-colors pr-2 break-words">
             {q.name}
           </h3>
         </div>
-        <p className="text-xs font-mono opacity-30">#{q.id}</p>
+        <p className="text-xs font-mono opacity-30 shrink-0">#{q.id}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-2 opacity-80">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-secondary rounded-lg">
-            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 py-2">
+        <div className="quiz-info-item flex items-center gap-1.5 rounded-xl border border-border-custom p-2 bg-secondary/30 min-w-0">
+          <div className="p-1 bg-secondary rounded-md border border-border-custom/70 shrink-0">
+            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           </div>
-          <div>
-            <p className="text-[10px] uppercase font-bold opacity-50 tracking-wider">Duration</p>
-            <p className="text-sm font-semibold tracking-tight">{fmtDuration(q.timelimit)}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-secondary rounded-lg">
-            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase font-bold opacity-50 tracking-wider">Attempted</p>
-            <p className="text-sm font-semibold tracking-tight">{q.hasFinishedAttempt ? "Yes" : "No"}</p>
+          <div className="min-w-0">
+            <p className="text-[8px] sm:text-[9px] uppercase font-bold text-text-muted tracking-wide leading-tight">Duration</p>
+            <p className="text-sm font-semibold tracking-tight leading-tight break-words">{fmtDuration(q.timelimit)}</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-secondary rounded-lg">
-            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l7 3-7 3" /></svg>
+        <div className="quiz-info-item flex items-center gap-1.5 rounded-xl border border-border-custom p-2 bg-secondary/30 min-w-0">
+          <div className="p-1 bg-secondary rounded-md border border-border-custom/70 shrink-0">
+            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
           </div>
-          <div>
-            <p className="text-[10px] uppercase font-bold opacity-50 tracking-wider">Marks</p>
-            <p className="text-sm font-semibold tracking-tight">
+          <div className="min-w-0">
+            <p className="text-[8px] sm:text-[9px] uppercase font-bold text-text-muted tracking-wide leading-tight">Attempted</p>
+            <p className="text-sm font-semibold tracking-tight leading-tight break-words">{q.hasFinishedAttempt ? "Yes" : "No"}</p>
+          </div>
+        </div>
+        <div className="quiz-info-item flex items-center gap-1.5 rounded-xl border border-border-custom p-2 bg-secondary/30 min-w-0 sm:col-span-2 lg:col-span-1">
+          <div className="p-1 bg-secondary rounded-md border border-border-custom/70 shrink-0">
+            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l7 3-7 3" /></svg>
+          </div>
+          <div className="min-w-0">
+            <p className="text-[8px] sm:text-[9px] uppercase font-bold text-text-muted tracking-wide leading-tight">Marks</p>
+            <p className="text-sm font-semibold tracking-tight leading-tight break-words">
               {q.lastGrade ?? q.currentGrade ?? q.latestAttemptGrade ?? "N/A"}
             </p>
           </div>
@@ -231,8 +231,8 @@ export default function QuizCard({ quiz: q }) {
           </div>
         )}
 
-        <div className="flex items-center justify-between gap-4 p-4 rounded-xl bg-secondary/30 border border-border-custom shadow-inner">
-           <div className="flex flex-col gap-0.5">
+          <div className="quiz-schedule-box flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between p-4 rounded-xl bg-secondary/30 border border-border-custom shadow-inner min-w-0">
+            <div className="flex flex-col gap-0.5 min-w-0">
              <span className="font-medium text-xs text-text-muted">Starts: {q.timeopen ? fmt(q.timeopen) : "Always"}</span>
              <span className="font-medium text-xs">Ends: {q.timeclose ? fmt(q.timeclose) : "No deadline"}</span>
            </div>
@@ -242,7 +242,7 @@ export default function QuizCard({ quiz: q }) {
         {hasLocalHistory && results && (
           <button
             onClick={() => setShowModal(true)}
-            className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-bold py-3.5 rounded-xl border border-border-custom transition-all flex items-center justify-center gap-2 active:scale-[0.95] group/hist mb-2"
+            className="quiz-history-btn w-full bg-secondary hover:bg-secondary/80 text-foreground font-bold py-3.5 rounded-xl border border-border-custom transition-all flex items-center justify-center gap-2 active:scale-[0.95] group/hist mb-2 text-center whitespace-normal break-words"
           >
             <svg className="w-4 h-4 opacity-50 group-hover/hist:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             View Solve Results
@@ -258,7 +258,7 @@ export default function QuizCard({ quiz: q }) {
         {canSolve && (
            <button
              onClick={handleSolveWithAI}
-             className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3.5 rounded-xl transition-all shadow-lg hover:shadow-primary/20 flex items-center justify-center gap-2 group/btn active:scale-[0.98]"
+             className="quiz-action-btn w-full bg-primary text-white font-bold py-3.5 rounded-xl transition-all shadow-lg hover:shadow-primary/20 flex items-center justify-center gap-2 group/btn active:scale-[0.98] text-center whitespace-normal break-words"
            >
              <svg className="w-5 h-5 group-hover/btn:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
              Solve with AI Now
