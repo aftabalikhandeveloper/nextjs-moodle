@@ -5,8 +5,8 @@ export async function middleware(request) {
   const session = request.cookies.get("session")?.value;
   const path = request.nextUrl.pathname;
 
-  // 1. Allow public assets and login page
-  if (path === "/login" || path.startsWith("/api/auth") || path.startsWith("/api/cron")) {
+  // 1. Allow public pages and auth/cron endpoints
+  if (path === "/" || path === "/login" || path.startsWith("/api/auth") || path.startsWith("/api/cron")) {
     return NextResponse.next();
   }
 
