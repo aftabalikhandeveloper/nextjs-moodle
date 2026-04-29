@@ -4,6 +4,16 @@ A premium, automated solution for solving Moodle quizzes using Google Gemini 2.0
 
 ---
 
+## 🖼️ Screenshots
+
+### 1. HOME PAGE
+![Home](public/screenshots/home.png)
+### 2. Dashboard
+![Dashboard](public/screenshots/dashboard.png)
+### 3. Quiz View
+![Quiz View](public/screenshots/quiz_view.png)
+
+
 ## 🔥 Key Features
 
 - **🤖 AI-Powered Solving:** Uses Gemini 2.0 Flash (Function Calling) for 10/10 accuracy scores.
@@ -50,7 +60,7 @@ EDGE_CONFIG="your_edge_config_connection_string"
 
 # Write access for updating quiz schedules/statuses
 VERCEL_API_TOKEN="your_vercel_api_token"
-EDGE_CONFIG_ID="ecfg_8ckdt3rpqnwg2bdwhq6lqqn4ulpf"
+EDGE_CONFIG_ID="your-edge-id-here"
 
 # Optional (recommended) secret for /api/cron/auto-solve
 CRON_SECRET="your_cron_secret"
@@ -66,6 +76,23 @@ JWT_SECRET="a_random_32_character_string"
 npm run dev
 ```
 Visit `http://localhost:3000` and sign in.
+
+### 3.1 Getting your Moodle token
+
+You can obtain a Moodle webservice token by requesting the `login/token.php` endpoint on your Moodle site. Use the `moodle_mobile_app` service (or the service name configured on your Moodle instance).
+
+Example URL (replace placeholders with your values):
+
+```
+http://YOUR_MOODLE_DOMAIN/login/token.php?username=YOUR_USERNAME&password=YOUR_PASSWORD&service=moodle_mobile_app
+```
+
+Notes:
+- Replace `YOUR_MOODLE_DOMAIN`, `YOUR_USERNAME`, and `YOUR_PASSWORD` with your Moodle site and account details.
+- Do NOT share your password or token publicly. Treat the token like a password and keep it in your `.env` file as `MOODLE_TOKEN`.
+- If your Moodle uses HTTPS, be sure to use `https://` in the URL.
+
+
 
 ---
 
